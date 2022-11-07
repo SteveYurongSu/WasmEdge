@@ -14,7 +14,7 @@ def cmd_exec(command):
     proc.wait()
     ret_code = proc.returncode
     if ret_code != 0:
-        raise Exception("{} failed, return code is {}".format(cmd, ret_code))
+        raise Exception(f"{cmd} failed, return code is {ret_code}")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -23,9 +23,8 @@ def main():
     parser.add_argument('--enable', help='enable python.', nargs='*')
     args = parser.parse_args()
 
-    if args.enable:
-        if args.enable[0] == 'false':
-            return
+    if args.enable and args.enable[0] == 'false':
+        return
 
     if args.path:
         curr_dir = os.getcwd()
